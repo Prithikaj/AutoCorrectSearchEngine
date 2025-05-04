@@ -1,6 +1,6 @@
 import streamlit as st
-from autocorrect.corrector import correct_spelling, load_corpus
-from search.search_engine import search_corpus
+from corrector import correct_spelling, load_corpus
+from search_engine import search_corpus
 from transformers import pipeline
 import speech_recognition as sr
 
