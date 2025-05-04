@@ -1,6 +1,6 @@
 streamlit==1.45.0
 numpy==2.2.5
 transformers==4.30.2
-torch==2.0.1
+torch==2.7.0
 speechrecognition==3.10.4  # Correct package name, latest version
 # pyaudio==0.2.14
