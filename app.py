@@ -5,7 +5,7 @@ from transformers import pipeline
 import speech_recognition as sr
 
 # Load corpus data
-corpus, vocab, word_probabs = load_corpus('data/big.txt')
+corpus, vocab, word_probabs = load_corpus('big.txt')
 
 # Load Hugging Face POS tagger model
 pos_tagger = pipeline("token-classification", model="vblagoje/bert-english-uncased-finetuned-pos", aggregation_strategy="simple")
