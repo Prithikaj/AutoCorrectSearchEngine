@@ -1,6 +1,11 @@
-streamlit==1.45.0
-numpy==2.2.5
-transformers==4.30.2
-torch==2.7.0
-speechrecognition==3.10.4  # Correct package name, latest version
-# pyaudio==0.2.14
+streamlit>=1.32.0
+numpy>=1.24.0
+nltk>=3.8.1
+plotly>=5.18.0
+pandas>=2.0.0
+PyPDF2>=3.0.0
+pypdf>=4.0.0
+pdfplumber>=0.10.0
+speechrecognition>=3.10.0
+streamlit-audiorecorder>=0.0.6
+pydub>=0.25.1
