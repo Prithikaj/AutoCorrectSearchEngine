@@ -1,2 +1,36 @@
-# created by virtualenv automatically
-*
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Compiled
+*.cpython-*.pyc
+*.cpython-*.pyo
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large model files
+*.pkl
+*.h5
+*.pt
+*.bin
