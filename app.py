@@ -353,17 +353,35 @@ elif page == "AutoCorrect":
         protected_words = {w.strip() for w in protected_raw.splitlines() if w.strip()}
 
         st.markdown('<div class="section-title" style="margin-top:1rem;">Voice Input</div>', unsafe_allow_html=True)
-        if st.button("🎙️ Use microphone", use_container_width=True):
-            try:
-                import speech_recognition as sr
-                rec = sr.Recognizer()
-                with sr.Microphone() as src:
-                    st.info("Listening… speak now.")
-                    audio = rec.listen(src, timeout=5)
-                st.session_state["voice_text"] = rec.recognize_google(audio)
-                st.rerun()
-            except Exception as e:
-                st.error(f"Voice error: {e}")
+        st.caption("Record your voice — works in browser, no microphone setup needed.")
+        try:
+            from audiorecorder import audiorecorder
+            _HAS_AUDIO = True
+        except ImportError:
+            _HAS_AUDIO = False
+
+        if _HAS_AUDIO:
+            audio = audiorecorder("🎙️ Click to record", "⏹️ Stop recording", key="voice_rec")
+            if len(audio) > 0:
+                # Save to a BytesIO buffer and transcribe
+                import io as _io
+                import speech_recognition as _sr
+                buf = _io.BytesIO()
+                audio.export(buf, format="wav")
+                buf.seek(0)
+                recognizer = _sr.Recognizer()
+                try:
+                    with _sr.AudioFile(buf) as source:
+                        audio_data = recognizer.record(source)
+                    st.session_state["voice_text"] = recognizer.recognize_google(audio_data)
+                    st.success(f"Heard: **{st.session_state['voice_text']}**")
+                    st.rerun()
+                except _sr.UnknownValueError:
+                    st.warning("Could not understand the audio. Please speak clearly.")
+                except Exception as e:
+                    st.error(f"Transcription error: {e}")
+        else:
+            st.info("Install `streamlit-audiorecorder` for voice input.")
 
     with input_col:
         voice_default = st.session_state.get("voice_text", "")

@@ -7,4 +7,5 @@ PyPDF2>=3.0.0
 pypdf>=4.0.0
 pdfplumber>=0.10.0
 speechrecognition>=3.10.0
-pyaudio>=0.2.13
+streamlit-audiorecorder>=0.0.6
+pydub>=0.25.1
